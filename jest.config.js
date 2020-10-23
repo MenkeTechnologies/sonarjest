@@ -1,6 +1,7 @@
 const { pathsToModuleNameMapper } = require('ts-jest/utils');
 const { compilerOptions } = require('./tsconfig');
 
+
 module.exports = {
   preset: 'jest-preset-angular',
   roots: ['<rootDir>/src/'],
@@ -9,6 +10,9 @@ module.exports = {
   collectCoverage: true,
   coverageReporters: ['lcov'],
   coverageDirectory: 'coverage',
+  reporters: ['default',  ['jest-sonar', {
+    outputDirectory: 'coverage',
+  }]],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/src'
   })
